@@ -1,8 +1,27 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import QueryToDo from './query_todo';
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: 'https://sela.herokuapp.com/v1alpha1/graphql' }),
+  cache: new InMemoryCache()
+});
+
+
+
+const AppWithProvider = () => (
+
+  <ApolloProvider client={client}>
+    <QueryToDo user_id="1"/>
+  </ApolloProvider>
+);
+
+
+ReactDOM.render(<AppWithProvider />, document.getElementById('root'));
 registerServiceWorker();
+

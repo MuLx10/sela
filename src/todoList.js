@@ -1,4 +1,5 @@
 import React from 'react';
+import mustr from './mutate_todo';
 
 
 var _createClass = function() {
@@ -165,6 +166,7 @@ var TodoListItem = function(_React$Component2) {
 }(React.Component);
 
 
+
 var TodoForm = function(_React$Component3) {
     _inherits(TodoForm, _React$Component3);
 
@@ -239,6 +241,12 @@ var TodoHeader = function(_React$Component4) {
     return TodoHeader;
 }(React.Component);
 
+
+var state="none";
+var todo_value;
+var todo_index;
+var todo_done;
+
 // console.log(TodoListItem);
 var TodoApp = function(_React$Component5) {
     _inherits(TodoApp, _React$Component5);
@@ -267,6 +275,12 @@ var TodoApp = function(_React$Component5) {
         key: "addItem",
         value: function addItem(
             todoItem) {
+
+            state =  "add";
+            todo_index = todoItems.length+1;
+            todo_value = todoItem.newItemValue;
+            todo_done = false;
+
             todoItems.unshift({
                 index: todoItems.length + 1,
                 value: todoItem.newItemValue,
@@ -281,6 +295,12 @@ var TodoApp = function(_React$Component5) {
         key: "removeItem",
         value: function removeItem(
             itemIndex) {
+
+            state =  "rm";
+            todo_value = todoItems[itemIndex].value;
+            todo_index = todoItems[itemIndex].index;
+            todo_done = todoItems[itemIndex].done;
+
             todoItems.splice(itemIndex, 1);
             this.setState({
                 todoItems: todoItems
@@ -291,6 +311,13 @@ var TodoApp = function(_React$Component5) {
         key: "markTodoDone",
         value: function markTodoDone(
             itemIndex) {
+
+            state =  "md";
+            todo_value = todoItems[itemIndex].value;
+            todo_index = todoItems[itemIndex].index;
+            todo_done = todoItems[itemIndex].done;
+
+
             var todo = todoItems[itemIndex];
             todoItems.splice(itemIndex, 1);
             todo.done = !todo.done;
@@ -307,6 +334,10 @@ var TodoApp = function(_React$Component5) {
                 React.createElement("div", {
                         className: "todoForm"
                     },
+                    React.createElement(mustr, {"state":state,
+                                                "value":todo_value, 
+                                                "index":todo_index,
+                                                "done":todo_done}),
                     React.createElement(TodoHeader, null),
                     React.createElement(TodoForm, {
                         addItem: this.addItem
