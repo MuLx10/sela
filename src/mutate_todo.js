@@ -30,10 +30,21 @@ class mustr extends Component {
     var value = this.props.value;
     var done = this.props.done;
     var index = this.props.index;
-    return (
-      <div className="App">
-        <p>{state}:{index}:{value}:{done}</p>
+    
+    var spect ;
+    if(state == "add"){
+      spect =(<p>{state}{index}{value}{done}</p>);
+    }
+    if(state == "md"){
+      spect = (<p>{state}{index}{value}{done}</p>);
+    }
+    if(state == "rm"){
+      spect =(<p>{state}{index}{value}{done}</p>);
+    }
 
+    return ( 
+      <div className="App">
+        {spect}
       </div>
     );
   }
