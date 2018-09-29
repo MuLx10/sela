@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { Query } from "react-apollo";
-import TodoElement from "./utils/TodoElement";
-import { QUERY_TODO } from "./utils/graphql";
+import TodoElement from "../utils/TodoElement";
+import { QUERY_TODO } from "../utils/graphql";
 // import UpdateToDo from './updateToDo';
 
 class ToDoList extends Component {

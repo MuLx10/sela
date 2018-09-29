@@ -1,22 +1,76 @@
-import React from "react";
-import { ApolloProvider } from "react-apollo";
-import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
-import TodoInput from "./ToDoInput";
-import ToDoList from "./ToDoList";
+import React, { Component } from 'react';
+import { Navbar, Button } from 'react-bootstrap';
 
-const client = new ApolloClient({
-  link: new HttpLink({ uri: "https://sela.herokuapp.com/v1alpha1/graphql" }),
-  cache: new InMemoryCache()
-});
+class App extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
 
-const App = ({ user_id, todo_index }) => (
-  <ApolloProvider client={client}>
-    <div className="todoForm">
-      <h3 className="title">To Do List</h3>
-      <TodoInput user_id={user_id} todo_index={todo_index} />
-      <ToDoList user_id={user_id} />
-    </div>
-  </ApolloProvider>
-);
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
+  }
+
+  render() {
+    const { isAuthenticated } = this.props.auth;
+
+    return (
+      <div className="container">
+        <Navbar fluid>
+          <Navbar.Header>
+            <Button
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, 'home')}
+            >
+              Home
+            </Button>
+            {
+              !isAuthenticated() && (
+                  <Button
+                    id="qsLoginBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </Button>
+                )
+            }
+            {
+              isAuthenticated() && (
+                  <Button
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, 'profile')}
+                  >
+                    Profile
+                  </Button>
+                )
+            }
+            {
+              isAuthenticated() && (
+                  <Button
+                    id="qsLogoutBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </Button>
+                )
+            }
+          </Navbar.Header>
+        </Navbar>
+        <div className="container">
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Mutation } from "react-apollo";
-import { QUERY_TODO, MUTATE_ADD_TODO } from "./utils/graphql";
+import { QUERY_TODO, MUTATE_ADD_TODO } from "../utils/graphql";
 
 const todo_done = false;
 
