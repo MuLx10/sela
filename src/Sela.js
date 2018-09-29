@@ -6,7 +6,7 @@ import TodoInput from "./ToDo/ToDoInput";
 import ToDoList from "./ToDo/ToDoList";
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token');
+  const token = 'peri';
   console.log(token);
   return {
     headers: {
