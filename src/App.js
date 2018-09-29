@@ -20,13 +20,7 @@ class App extends Component {
     return (
       <div className="container">
         <br/>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
+
             {
               !isAuthenticated() && (
                   <Button
