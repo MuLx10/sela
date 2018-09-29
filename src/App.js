@@ -10,10 +10,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-var user_id = "1";
-var todo_index = 1;
-
-const App = () => (
+const App = ({ user_id, todo_index }) => (
   <ApolloProvider client={client}>
     <div className="todoForm">
       <h3 className="title">To Do List</h3>
