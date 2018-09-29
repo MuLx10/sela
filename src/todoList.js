@@ -1,5 +1,32 @@
 import React from 'react';
-import mustr from './mutate_todo';
+import MutateToDo from './mutate_todo';
+import gql from 'graphql-tag';
+import { Query, Mutation } from 'react-apollo';
+
+
+
+const MUTATE_ADD_TODO = gql`
+  mutation( $user_id:String!,
+          $todo_index:Int!,
+          $todo_done:Boolean!,
+          $todo_value:String!)
+  {
+    insert_todoos(objects:
+            {
+                user_id :$user_id,
+                todo_done:$todo_done,
+                todo_index:$todo_index,
+                todo_value :$todo_value
+            }) 
+  {
+    affected_rows
+  }
+}`;
+
+var state="none";
+var todo_value;
+var todo_index;
+var todo_done;
 
 
 var _createClass = function() {
@@ -210,10 +237,16 @@ var TodoForm = function(_React$Component3) {
                         className: "form-control",
                         placeholder: "add a new todo..."
                     }),
+
                     React.createElement("button", {
                         type: "submit",
                         className: "btn btn-default"
-                    })));
+                    }),
+                    
+                    )
+
+                );
+                
 
 
         }
@@ -242,10 +275,7 @@ var TodoHeader = function(_React$Component4) {
 }(React.Component);
 
 
-var state="none";
-var todo_value;
-var todo_index;
-var todo_done;
+
 
 // console.log(TodoListItem);
 var TodoApp = function(_React$Component5) {
@@ -334,7 +364,7 @@ var TodoApp = function(_React$Component5) {
                 React.createElement("div", {
                         className: "todoForm"
                     },
-                    React.createElement(mustr, {"state":state,
+                    React.createElement(MutateToDo, {"state":state,
                                                 "value":todo_value, 
                                                 "index":todo_index,
                                                 "done":todo_done}),

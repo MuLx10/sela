@@ -3,21 +3,14 @@ import PropTypes from 'prop-types';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import Add from './add';
 
 
 
 
-const QUERY_TODO = gql`
-  query($user_id:String!){
-  todoos (where:{user_id:{_eq:$user_id}}){
-    todo_index
-    todo_done
-    todo_value
-  }
-}
-`;
 
-class mustr extends Component {
+
+class MutateToDo extends Component {
     constructor() {
         super();
         this.state = {
@@ -31,15 +24,16 @@ class mustr extends Component {
     var done = this.props.done;
     var index = this.props.index;
     
-    var spect ;
-    if(state == "add"){
-      spect =(<p>{state}{index}{value}{done}</p>);
+    var spect = <h1>None</h1>;
+    if(state === "add"){
+      spect =(<Add user_id={"0"} todo_index={index} 
+                todo_value={value} todo_done={done}/>);
     }
-    if(state == "md"){
+    if(state === "md"){
       spect = (<p>{state}{index}{value}{done}</p>);
     }
-    if(state == "rm"){
-      spect =(<p>{state}{index}{value}{done}</p>);
+    if(state === "rm"){
+      spect = (<p>{state}{index}{value}{done}</p>);
     }
 
     return ( 
@@ -51,11 +45,11 @@ class mustr extends Component {
 }
 
 
-mustr.propTypes = {state: PropTypes.string};
-mustr.propTypes = {value: PropTypes.string};
-mustr.propTypes = {index: PropTypes.Int};
-mustr.propTypes = {done: PropTypes.bool};
-export default mustr;
+MutateToDo.propTypes = {state: PropTypes.string};
+MutateToDo.propTypes = {value: PropTypes.string};
+MutateToDo.propTypes = {index: PropTypes.Int};
+MutateToDo.propTypes = {done: PropTypes.bool};
+export default MutateToDo;
 
 
 
