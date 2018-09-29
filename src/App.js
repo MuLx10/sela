@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import TodoInput from "./ToDoInput";
