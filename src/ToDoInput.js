@@ -89,7 +89,6 @@ export default class TodoInput extends React.Component {
       <Mutation mutation={MUTATE_ADD_TODO}>
         {(addTodo, { data, loading, called, error }) => {
           return (
-            <div className="todoForm">
               <form  ref="form" className="form-inline"
                   onSubmit={e => {
                   this.handleButtonPress(addTodo);
@@ -100,7 +99,6 @@ export default class TodoInput extends React.Component {
               value={this.state.textboxValue}/>
               <button type="submit" className="btn btn-default" />
           </form>
-            </div>
           )
         }}
       </Mutation>

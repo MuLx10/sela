@@ -22,8 +22,11 @@ var todo_index = 1;
 const AppWithProvider = () => (
 
   <ApolloProvider client={client}>
+  <div className="todoForm">
+    <h3 className="title">To Do List</h3>
     <TodoInput user_id={user_id} todo_index={todo_index}/>
     <ToDoList user_id={user_id}/>
+   </div>
   </ApolloProvider>
 );
 

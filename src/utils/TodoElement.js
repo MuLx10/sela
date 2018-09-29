@@ -55,7 +55,7 @@ const TodoElement = ({ todo,user_id }) => (
   <Mutation mutation={MUTATE_UPDATE_TODO}>
     {(updateTodo) => {
       return (
-        <div className="parentContainer">
+        <div className="undone">
           <li className="todoItem"
             onClick={e => {
               handleTodoToggle(updateTodo, todo, user_id)
@@ -68,13 +68,13 @@ const TodoElement = ({ todo,user_id }) => (
             <Mutation mutation={MUTATE_DELETE_TODO}>
               {(deleteTodo) => {
                 return (
-                  <button className="deleteLabel"
+                  <button className="close"
                     onClick={e => {
                       e.preventDefault();
                       e.stopPropagation();
                       handleTodoDelete(deleteTodo, todo, user_id)
                     }}>
-                    Delete
+                    x
                   </button>
                 )
               }}

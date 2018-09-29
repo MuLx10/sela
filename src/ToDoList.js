@@ -30,16 +30,16 @@ class ToDoList extends Component {
 
             console.log("user_id  "+JSON.stringify(data.todoos));
             return (
-                  <div>
-                    <ul className="todoList">
-                              {
-                                data.todoos.map((todoos, index) => {
-                                  return (
-                                    <TodoElement key={index} todo={todoos} user_id={user_id}/>
-                                  );
-                                })
-                              }
-                    </ul>
+                  <div className="list">
+                    <li className="list-group-item">
+                        {
+                          data.todoos.map((todoos, index) => {
+                            return (
+                              <TodoElement key={index} todo={todoos} user_id={user_id}/>
+                            );
+                          })
+                        }
+                    </li>
                   </div>
               );
           }

@@ -26,6 +26,16 @@ body {
   margin: 0;
 }
 
+.todoForm .list {
+  margin-left: 5.5%;
+  width: 92%;
+  text-align: center;
+  font-size: 1.9rem;
+  color: #56596A;
+  font-weight: normal;
+  padding: 20px 0;
+}
+
 .done {
   color: #515151;
   font-size: 1.5rem;
@@ -37,7 +47,7 @@ body {
 .done span, .undone span {
   padding: 3px;
   margin-right: 10px;
-  border: 1px solid #CFD0D5;
+  border: 1px solid #000000;
   border-radius: 3px;
 }
 
