@@ -23,11 +23,17 @@ class Profile extends Component {
       <div className="container">
         <div className="profile-area">
           <h1>{profile.name}</h1>
-          <Panel header="Profile">
-            <img src={profile.picture} alt="profile" />
-            <h3>{profile.nickname}</h3>
-          </Panel>
-            <Sela user_id={profile.sub} todo_index={todo_index}/>
+            <Panel header="Profile">
+              <div className="im">
+                <img src={profile.picture} alt="profile" />
+                <h3>{profile.nickname}</h3>
+                
+              </div>
+              <div className="sela">
+                <br/>
+                <Sela user_id={profile.sub} todo_index={todo_index}/>
+              </div>
+            </Panel>
         </div>
       </div>
     );

@@ -19,8 +19,7 @@ class App extends Component {
 
     return (
       <div className="container">
-        <Navbar fluid>
-          <Navbar.Header>
+        <br/>
             <Button
               bsStyle="primary"
               className="btn-margin"
@@ -63,8 +62,6 @@ class App extends Component {
                   </Button>
                 )
             }
-          </Navbar.Header>
-        </Navbar>
         <div className="container">
           {this.props.children}
         </div>
