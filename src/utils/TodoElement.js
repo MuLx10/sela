@@ -37,7 +37,7 @@ const handleTodoDelete = (deleteTodo, todo, user_id) => {
       todo_index: todo.todo_index,
       todo_value: todo.todo_value
     },
-    update: (cache, { data: { update_todoos } }) => {
+    update: (cache, { data: { delete_todoos } }) => {
       const data = cache.readQuery({
         query: QUERY_TODO,
         variables: { user_id: user_id }
@@ -65,7 +65,7 @@ const TodoElement = ({ todo, user_id }) => (
               handleTodoToggle(updateTodo, todo, user_id);
             }}>
             {todo.todo_done ? (<strike className="todoLabel">{todo.todo_value}{todo.todo_done}</strike>) : 
-              (<label className="todoLabel">{todo.todo_value}{todo.todo_done}</label>)}
+            (<label className="todoLabel">{todo.todo_value}{todo.todo_done}</label>)}
             <Mutation mutation={MUTATE_DELETE_TODO}>
               {deleteTodo => {
                 return (
@@ -73,7 +73,6 @@ const TodoElement = ({ todo, user_id }) => (
                     className="close"
                     onClick={e => {
                       e.preventDefault();
-                      e.stopPropagation();
                       handleTodoDelete(deleteTodo, todo, user_id);
                     }}>
                     x

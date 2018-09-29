@@ -56,34 +56,34 @@ export default class TodoInput extends React.Component {
   };
   handleButtonPress = addTodo => {
     const newTask = this.state.textboxValue;
-    const user_id = this.props.user_id;
-    addTodo({
-      variables: {
-        user_id: user_id,
-        todo_value: newTask,
-        todo_index: this.props.todo_index,
-        todo_done: this.state.todo_done
-      },
-      update: (store, { data: { insert_todoos } }) => {
-        const data = store.readQuery({
-          query: QUERY_TODO,
-          variables: { user_id: user_id }
-        });
-        const insertedTodo = insert_todoos.returning;
-        // console.log(insert_todoos.returning);
-        data.todoos.splice(0, 0, insertedTodo[0]);
-        store.writeQuery({
-          query: QUERY_TODO,
-          variables: { user_id: user_id },
-          data
-        });
-        this.setState({
-          ...this.state,
-          textboxValue: "",
-          todo_index: this.props.todo_index + 1
-        });
-      }
-    });
+      const user_id = this.props.user_id;
+      addTodo({
+        variables: {
+          user_id: user_id,
+          todo_value: newTask,
+          todo_index: this.props.todo_index,
+          todo_done: this.state.todo_done
+        },
+        update: (store, { data: { insert_todoos } }) => {
+          const data = store.readQuery({
+            query: QUERY_TODO,
+            variables: { user_id: user_id }
+          });
+          const insertedTodo = insert_todoos.returning;
+          // console.log(insert_todoos.returning);
+          data.todoos.splice(0, 0, insertedTodo[0]);
+          store.writeQuery({
+            query: QUERY_TODO,
+            variables: { user_id: user_id },
+            data
+          });
+          this.setState({
+            ...this.state,
+            textboxValue: "",
+            todo_index: this.props.todo_index + 1
+          });
+        }
+      });
   };
   render() {
     return (
@@ -92,11 +92,7 @@ export default class TodoInput extends React.Component {
           return (
             <form
               ref="form"
-              className="form-inline"
-              onSubmit={e => {
-                this.handleButtonPress(addTodo);
-              }}
-            >
+              className="form-inline" >
               <input
                 className="form-control"
                 placeholder="Add a todo"
@@ -106,7 +102,9 @@ export default class TodoInput extends React.Component {
                 onChange={this.handleTextboxValueChange}
                 value={this.state.textboxValue}
               />
-              <button type="submit" className="btn btn-default" />
+              <button type="submit" className="btn btn-default" onClick={e => {
+                this.handleButtonPress(addTodo);
+              }}/>
             </form>
           );
         }}
