@@ -21,7 +21,7 @@ class ToDoList extends Component {
         <Query query={QUERY_TODO} variables={{ user_id }}>
           {({ data, error, loading }) => {
             if (error) return "💩 Oops!";
-            if (loading) return "🕓 🕔 🕕 🕖 🕗 🕘 🕙 🕚 🕛 🕜 🕝 🕞 🕟 ";
+            if (loading) return "🧘🏻‍♂️ Patience 🧘🏻‍♀️";
 
             console.log("user_id  " + JSON.stringify(data.todoos));
             return (
