@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Profile from './Profile'
+import img from '../css/todo.svg';
+import Profile from './Profile';
 class Home extends Component {
   login() {
     this.props.auth.login();
@@ -17,6 +18,7 @@ class Home extends Component {
         }
         {
           !isAuthenticated() && (
+            <div>
               <h4>
                 You are not logged in! Please{' '}
                 <a
@@ -27,6 +29,10 @@ class Home extends Component {
                 </a>
                 {' '}to continue.
               </h4>
+              <div className="img_cont">
+                <img src={img} alt="profile" />
+              </div>
+            </div>
             )
         }
       </div>
