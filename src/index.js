@@ -4,10 +4,9 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
-import Add from './addToDo';
 import TodoInput from './ToDoInput'
-import ToDoList from './queryToDo'
-import "./style.css"
+import ToDoList from './ToDoList'
+import "./css/style.css"
 
 
 
@@ -23,7 +22,7 @@ var todo_index = 1;
 const AppWithProvider = () => (
 
   <ApolloProvider client={client}>
-    <TodoInput user_id={user_id}/>
+    <TodoInput user_id={user_id} todo_index={todo_index}/>
     <ToDoList user_id={user_id}/>
   </ApolloProvider>
 );

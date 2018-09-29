@@ -1,46 +1,11 @@
 import React from 'react';
 import { Mutation } from "react-apollo";
-import gql from 'graphql-tag';
+import {
+  QUERY_TODO,
+  MUTATE_ADD_TODO
+} from './utils/graphql';
 
 const todo_done = false;
-const todo_value = "false";
-const todo_index = 25;
-
-const MUTATE_ADD_TODO = gql`
-  mutation(
-    $user_id: String!
-    $todo_index: Int!
-    $todo_done: Boolean!
-    $todo_value: String!
-  ) {
-    insert_todoos(
-      objects: {
-        user_id: $user_id
-        todo_done: $todo_done
-        todo_index: $todo_index
-        todo_value: $todo_value
-      }
-    ) {
-      returning{
-        todo_index,
-        todo_value,
-        todo_done
-      }
-    }
-  }
-`;
-
-const QUERY_TODO = gql`
-  query($user_id:String!){
-  todoos (where:{user_id:{_eq:$user_id}}){
-    todo_index
-    todo_done
-    todo_value
-  }
-}
-`;
-
-
 
 export default class TodoInput extends React.Component {
 
@@ -49,10 +14,11 @@ export default class TodoInput extends React.Component {
     this.state = {
       textboxValue: '',
       todo_index:0,
-      todo_done:false
+      todo_done:todo_done
     }
-  }
 
+  }
+   
   handleTextboxValueChange = (e) => {
     this.setState({
       ...this.state,
@@ -68,7 +34,7 @@ export default class TodoInput extends React.Component {
         variables: {
                   user_id: user_id,
                   todo_value: newTask,
-                  todo_index: this.state.todo_index,
+                  todo_index: this.props.todo_index,
                   todo_done: this.state.todo_done
         },
         update: (store, { data: { insert_todoos }}) => {
@@ -84,7 +50,7 @@ export default class TodoInput extends React.Component {
           this.setState({
             ...this.state,
             textboxValue: '',
-            todo_index:this.state.todo_index+1
+            todo_index:this.props.todo_index+1
           });
         }
       })
@@ -97,7 +63,7 @@ export default class TodoInput extends React.Component {
         variables: {
                   user_id: user_id,
                   todo_value: newTask,
-                  todo_index: this.state.todo_index,
+                  todo_index: this.props.todo_index,
                   todo_done: this.state.todo_done
         },
         update: (store, { data: { insert_todoos }}) => {
@@ -113,7 +79,7 @@ export default class TodoInput extends React.Component {
           this.setState({
             ...this.state,
             textboxValue: '',
-            todo_index:this.state.todo_index+1
+            todo_index:this.props.todo_index+1
           });
         }
       })

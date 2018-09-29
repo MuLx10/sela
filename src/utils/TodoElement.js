@@ -1,47 +1,13 @@
 import React from 'react';
 import { Mutation } from "react-apollo";
-import gql from 'graphql-tag';
+import {
+  QUERY_TODO,
+  MUTATE_DELETE_TODO,
+  MUTATE_UPDATE_TODO
+} from './graphql';
 
 
-const MUTATE_UPDATE_TODO = gql`
-  mutation( $user_id: String!,
-            $todo_done: Boolean!,
-            $todo_index: Int!,
-            $todo_value: String!)
-  {
-    update_todoos(_set:{todo_done:$todo_done, todo_index:$todo_index } where :{user_id:{_eq:$user_id}, todo_value:{_eq:$todo_value}})
-    {
-      affected_rows
-    }
-  }
-`;
-
-
-const MUTATE_DELETE_TODO = gql`
-mutation( $user_id: String!,
-          $todo_index:Int!,
-          $todo_value: String!)
-{
-  delete_todoos(where :{user_id:{_eq:$user_id}, todo_value:{_eq:$todo_value}, todo_index:{_eq:$todo_index}})
-  {
-    affected_rows
-  }
-}
-`;
-
-
-const QUERY_TODO = gql`
-  query($user_id:String!){
-  todoos (where:{user_id:{_eq:$user_id}}){
-    todo_index
-    todo_done
-    todo_value
-  }
-}
-`;
-const user_id = "1";
-
-const handleTodoToggle = (toggleTodo, todo) => {
+const handleTodoToggle = (toggleTodo, todo,user_id) => {
   toggleTodo({
     variables: {
           user_id: user_id,
@@ -63,7 +29,7 @@ const handleTodoToggle = (toggleTodo, todo) => {
   })
 }
 
-const handleTodoDelete = (deleteTodo, todo) => {
+const handleTodoDelete = (deleteTodo, todo, user_id) => {
   console.log("handleTodoDelete "+JSON.stringify(todo));
   deleteTodo({
     variables: {
@@ -85,14 +51,14 @@ const handleTodoDelete = (deleteTodo, todo) => {
   })
 }
 
-const Todo = ({ todo }) => (
+const TodoElement = ({ todo,user_id }) => (
   <Mutation mutation={MUTATE_UPDATE_TODO}>
     {(updateTodo) => {
       return (
         <div className="parentContainer">
           <li className="todoItem"
             onClick={e => {
-              handleTodoToggle(updateTodo, todo)
+              handleTodoToggle(updateTodo, todo, user_id)
             }}>
             {
               todo.todo_done ?
@@ -106,7 +72,7 @@ const Todo = ({ todo }) => (
                     onClick={e => {
                       e.preventDefault();
                       e.stopPropagation();
-                      handleTodoDelete(deleteTodo, todo)
+                      handleTodoDelete(deleteTodo, todo, user_id)
                     }}>
                     Delete
                   </button>
@@ -120,4 +86,4 @@ const Todo = ({ todo }) => (
   </Mutation>
 )
 
-export default Todo;
+export default TodoElement;
