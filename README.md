@@ -1,4 +1,4 @@
-Live Demo at [Link](https://sela.herokuapp.com/home)
+# Live Demo at [Link](https://sela.herokuapp.com/home)
 
 ```
 $ git clone https://github.com/MuLx10/sela.git
@@ -6,7 +6,16 @@ $ cd sela
 $ npm install
 ```
 
-To run the app
+# Edit the [auth-variables.js](https://github.com/MuLx10/sela/blob/master/src/auth/auth0-variables.js)
+```
+export const AUTH_CONFIG = {
+  domain: 'YOUR_DOMAIN',
+  clientId: 'YOUR_CLIENT_ID',
+  callbackUrl: 'YOUR_CALLBACK_URL'
+}
+```
+
+# To run the app
 `$ npm start`
 
 Point your browser to 
