@@ -22,6 +22,7 @@ export default class TodoInput extends React.Component {
   };
 
   handleTextboxKeyPress = (e, addTodo) => {
+    e.preventDefault();
     if (e.key === "Enter") {
       const newTask = this.state.textboxValue;
       const user_id = this.props.user_id;
@@ -54,7 +55,8 @@ export default class TodoInput extends React.Component {
       });
     }
   };
-  handleButtonPress = addTodo => {
+  handleButtonPress = add(e,Todo) => {
+    e.preventDefault();
     const newTask = this.state.textboxValue;
       const user_id = this.props.user_id;
       addTodo({
@@ -103,7 +105,7 @@ export default class TodoInput extends React.Component {
                 value={this.state.textboxValue}
               />
               <button type="submit" className="btn btn-default" onClick={e => {
-                this.handleButtonPress(addTodo);
+                this.handleButtonPress(e,addTodo);
               }}/>
             </form>
           );
