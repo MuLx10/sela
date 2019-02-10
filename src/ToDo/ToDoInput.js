@@ -22,8 +22,8 @@ export default class TodoInput extends React.Component {
   };
 
   handleTextboxKeyPress = (e, addTodo) => {
-    e.preventDefault();
     if (e.key === "Enter") {
+      e.preventDefault();
       const newTask = this.state.textboxValue;
       const user_id = this.props.user_id;
       addTodo({
