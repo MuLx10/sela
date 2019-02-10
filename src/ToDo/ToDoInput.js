@@ -55,7 +55,7 @@ export default class TodoInput extends React.Component {
       });
     }
   };
-  handleButtonPress = add(e,Todo) => {
+  handleButtonPress = (e,addTodo) => {
     e.preventDefault();
     const newTask = this.state.textboxValue;
       const user_id = this.props.user_id;
