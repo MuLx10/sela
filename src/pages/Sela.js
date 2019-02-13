@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {BrowserRouter} from 'react-router-dom'
 import Todo from './todo/ToDo';
 import AddToDo from './todo/AddToDo';
 import {graphql,compose} from 'react-apollo';
@@ -57,6 +56,9 @@ class Sela extends Component {
     return (
       <div className="App">
       	<div style={selaStyle}>
+          <header style={headerStyle}>
+            <h1> ToDo List</h1>
+          </header>
           <Todo  todos={this.getData()} markComplete={this.markComplete} delToDo={this.delToDo}/>
 	      	<AddToDo addToDo={this.addToDo} />
       	</div>
@@ -71,9 +73,18 @@ const selaStyle = {
     float: "right",
     marginTop: "10%",
     marginRight: "10%",
+    marginLeft: "50%",
     backgroundColor: "#f4f4f4",
+    position:"absolute"
   
 }
+const headerStyle={
+  backgroundColor:'#333',
+  color:'#fff',
+  textAlign:'center',
+  padding:'10px'
+}
+
 export default compose(
   graphql(QUERY_TODO,{name:"qtodo"}),
   graphql(MUTATE_UPDATE_TODO,{name:"utodo"}),
