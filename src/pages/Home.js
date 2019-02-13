@@ -37,8 +37,8 @@ export default withAuth(
       const mainContent = this.state.authenticated ? (
         <div >
           <p className="lead">
-            <Link to="/todo">Click here</Link>
-            to enter ur todo{' '}
+            <Link to="/todo">Click here</Link>{' '}
+            to enter ur todo
           </p>
           <button className="btn btn-light btn-lg" onClick={this.logout}>Logout</button>
         </div>
