@@ -1,20 +1,25 @@
-import React,{Component} from "react";
-import { ApolloProvider } from "react-apollo";
-import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
-import Sela from "./Sela";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from './layouts/Navbar';
+import Home from './pages/Home';
+import TodoList from './pages/TodoList';
+import './App.css';
 
-const client = new ApolloClient({
-  link: new HttpLink({ uri: 'https://selagql.herokuapp.com/v1alpha1/graphql' }),
-  cache: new InMemoryCache(),
-});
 
 class App extends Component {
   render() {
-    return (
-    	<ApolloProvider client={client}>
-    	  <Sela user_id={"0"} />
-    	</ApolloProvider>
-    );
+	return (
+		<Router>
+			<div className="App">
+				<Navbar/>
+				<div className="container">
+					<Route exact path="/" component={Home}/>
+					<Route exact path="/todo" component={TodoList}/>
+				</div>
+			</div>
+		</Router>
+	);
   }
 }
+
 export default App;

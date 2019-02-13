@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@okta/okta-react": "^1.1.4",
+    "@okta/okta-signin-widget": "^2.15.0",
     "apollo-boost": "^0.1.16",
-    "axios": "^0.18.0",
     "graphql": "^14.0.2",
     "install": "^0.11.0",
     "npm": "^6.4.1",

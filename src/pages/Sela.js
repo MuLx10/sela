@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import {BrowserRouter,Route} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import Todo from './todo/ToDo';
 import AddToDo from './todo/AddToDo';
-import Header from './utils/Header';
-import About from './pages/About';
-// import axios from 'axios';
 import {graphql,compose} from 'react-apollo';
-import { QUERY_TODO,MUTATE_UPDATE_TODO,MUTATE_DELETE_TODO,MUTATE_ADD_TODO } from './utils/graphql';
-import './App.css';
+import { QUERY_TODO,MUTATE_UPDATE_TODO,MUTATE_DELETE_TODO,MUTATE_ADD_TODO } from '../utils/graphql';
 
 class Sela extends Component {
   constructor(props){
@@ -59,24 +55,25 @@ class Sela extends Component {
   render() {
     // console.log(this.props);
     return (
-    	<BrowserRouter>
-	      <div className="App">
-	      	<div className="container">
-		      	<Header/>
-		      	<Route exact path="/" render={props=>(
-		      		<React.Fragment>
-                <Todo  todos={this.getData()} markComplete={this.markComplete} delToDo={this.delToDo}/>
-				      	<AddToDo addToDo={this.addToDo} />
-		      		</React.Fragment>
-		      	)}/>
-		      	<Route path="/about" render={About}/>
-	      	</div>
-        </div>
-	     </BrowserRouter>
+      <div className="App">
+      	<div style={selaStyle}>
+          <Todo  todos={this.getData()} markComplete={this.markComplete} delToDo={this.delToDo}/>
+	      	<AddToDo addToDo={this.addToDo} />
+      	</div>
+      </div>
     );
   }
 }
 
+const selaStyle = {
+    padding:"1rem 1rem",
+    width: "30%",
+    float: "right",
+    marginTop: "10%",
+    marginRight: "10%",
+    backgroundColor: "#f4f4f4",
+  
+}
 export default compose(
   graphql(QUERY_TODO,{name:"qtodo"}),
   graphql(MUTATE_UPDATE_TODO,{name:"utodo"}),

@@ -14,14 +14,7 @@ a{
   text-decoration: none;
 }
 
-.container{
-	padding:1rem 1rem;
-	width: 30%;
-	float: right;
-	margin-top: 10%;
-	margin-right: 10%;
-	background-color: #f4f4f4;
-}
+
 .sbtn{
 	display: inline-block;
 	border: none;
