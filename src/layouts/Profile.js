@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-
+import './Profile.css';
 
 class Profile extends Component {
-
   render() {
-    console.log(this.props.user);
+    const  profile  = this.props.profile;
     return (
-      <div style={prflStyle}>
-        <h1>{this.props.user.currentUserName}</h1>
-        <h3>{this.props.user.currentUserEmail}</h3>
+      <div className="container">
+        <div className="profile-area">
+          <h1>{profile.name}</h1>
+            <div header="Profile">
+              <div className="im">
+                <img src={profile.picture} alt="profile" />
+                <h3>{profile.nickname}</h3>
+              </div>
+            </div>
+        </div>
       </div>
     );
   }
-}
-
-const prflStyle = {
-  padding: "10px 100px",
-  marginTop:"12%",
-  position: "absolute"
 }
 
 export default Profile;

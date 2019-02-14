@@ -71,7 +71,6 @@ const selaStyle = {
     padding:"1rem 1rem",
     width: "30%",
     float: "right",
-    marginTop: "5%",
     marginRight: "10%",
     marginLeft: "50%",
     backgroundColor: "#f4f4f4",

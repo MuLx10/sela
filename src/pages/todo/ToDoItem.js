@@ -4,7 +4,10 @@ class ToDoItem extends Component {
 	getStyle = () => {
 		return {
 			padding: '10px',
-			borderBottom: '1px ccc dotted',
+			backgroundColor:'transparent',
+			border:'none',
+			cursor:'pointer',
+			borderShadow:'none',
 			textDecoration: this.props.todo.todo_done?
 			'line-through':'none'
 		}
@@ -12,12 +15,12 @@ class ToDoItem extends Component {
 	
   render() {
     return (
-    	<div style={this.getStyle()}>
+    	<div >
     		<p>
-	    		<a style={{cursor:'pointer'}} 
+	    		<button style={this.getStyle()} 
 	    			onClick={this.props.markComplete.bind(this,this.props.todo)}>
 	    			{this.props.todo.todo_value}
-	    		</a>
+	    		</button>
 	    		<button style={btnStyle} onClick={this.props.delToDo.bind(this,this.props.todo)}>x</button>
     		</p>
     	</div>
@@ -32,4 +35,5 @@ const btnStyle = {
 	cursor:'pointer',
 	float:'right'
 }
+
 export default ToDoItem;

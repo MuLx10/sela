@@ -11,25 +11,30 @@ const client = new ApolloClient({
 
 class TodoList extends Component {
 	state = {
-	    currentUserName: '',
-	    currentUserEmail: ''
-	};
-	componentDidMount() {
-		const idToken = JSON.parse(localStorage.getItem('okta-token-storage'));
-		console.log(localStorage.getItem('okta-token-storage'));
-		this.setState({
-		  currentUserEmail: idToken.idToken.claims.email,
-		  currentUserName: idToken.idToken.claims.name
-		});
+		profile:{
+			sub:'0'
+		}
 	}
-  render() {
+	componentWillMount() {
+		const { userProfile, getProfile } = this.props.auth;
+		if (!userProfile) {
+			getProfile((err, profile) => {
+			  this.setState({ profile });
+			});
+		} 
+		else {
+			this.setState({ profile: userProfile });
+		}
+	}
+    render() {
+    	const profile = this.state.profile;
 		return (
-				<React.Fragment>
-					<ApolloProvider client={client}>
-						<Profile user={this.state}/>
-					  <Sela user_id={this.state.currentUserEmail} />
-					</ApolloProvider>
-				</React.Fragment>
+			<React.Fragment>
+				<ApolloProvider client={client}>
+					<Profile profile={profile}/>
+				    <Sela user_id={profile.sub} />
+				</ApolloProvider>
+			</React.Fragment>
 			);
   }
 }
