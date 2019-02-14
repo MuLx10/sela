@@ -8,7 +8,7 @@ $ cd sela
 $ npm install
 ```
 
-### Edit the [auth-variables.js](https://github.com/MuLx10/sela/blob/master/src/auth/auth0-variables.js)
+### Edit the [auth-variables.js](https://github.com/MuLx10/sela/blob/auth0/src/auth/auth0-variables.js)
 ```
 export const AUTH_CONFIG = {
   domain: 'YOUR_DOMAIN',
